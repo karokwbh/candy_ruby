@@ -4,23 +4,17 @@
 # 範例：9527 變成 "1000 x 9 + 100 x 5 + 10 x 2 + 7"
 
 def expandedForm(num)
-  num.to_s.chars.reverse.each_with_index.reduce("") { |sum, (x, i)|
-    if i == 0
-      if x != "0"
-        sum = x
-      end
-    else
-      if x != "0"
-        if sum == ""
-          sum = "#{10.pow(i)} x #{x}"
-        else
-          sum = "#{10.pow(i)} x #{x} + #{sum}"
-        end
-      end
+  # 使用digits 轉陣列 舉例：12345.digits # => [5, 4, 3, 2, 1]
+  num.digits.each_with_index.map { |x, y|
+    if x == 0 # 當數字為0
+      nil
+    elsif y == 0 # 當為個位數時
+      "#{x}"
+    else # 其餘
+      "#{10.pow(y)} x #{x}"
     end
-
-    sum
-  }
+  }.compact.reverse.join(" + ")
+  # 刪掉nil的並反轉陣列再用 + 組合
 end
 
 puts expandedForm(8) # 印出 8
