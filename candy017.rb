@@ -4,7 +4,7 @@
 # 範例：5 -> 101 -> 2 個 1
 
 def countBits(num)
-  num.to_s(2).chars.select { |digit| digit == '1' }.count
+  num.to_s(2).chars.count("1")
 end
 
 p countBits(1234) # 5
