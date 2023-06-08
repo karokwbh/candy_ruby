@@ -3,8 +3,8 @@
 # 題目：檢查字串的 x 跟 o 的數量是不是一樣多，不分大小寫
 
 def xxoo(str)
-  str = str.chars
-  str.select { |char| char.downcase == 'o' }.count == str.select { |char| char.downcase == 'x' }.count
+  str = str.downcase
+  str.count("o") == str.count('x')
 end
 
 p xxoo("ooxx") # true
