@@ -4,12 +4,10 @@
 # 範例："AAABBBDDDAABBBCC" -> ['A', 'B', 'D', 'A', 'B', 'C']
 
 def uniqueOrder(sequence)
-  # 把字串轉成字元陣列
-  sequence = sequence.chars if not sequence.is_a?(Array)
-  result = []
-  sequence.select { |item|
-    result << item if result.last != item
-  }
+  # 字串轉字元陣列
+  sequence = sequence.chars if sequence.is_a?(String)
+  # 根據回傳連續的一樣為一組 然後取第一個
+  sequence.chunk { |x| x }.map(&:first)
 end
 
 p uniqueOrder("AABCC") # [ 'A', 'B', 'C']
